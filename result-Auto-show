@@ -1,0 +1,236 @@
+from selenium import webdriver 
+import pandas as pd
+import time
+from selenium.webdriver.chrome.service import Service
+path = "C:\\Users\\kunal\\Downloads\\chromedriver_win32\\chromedriver.exe"
+
+service = Service(executable_path=path)
+options = webdriver.ChromeOptions()
+driver = webdriver.Chrome(service=service, options=options)
+
+
+driver.get('https://brabu.net/bca42023_result.php')
+
+Roll = [
+    213141, 
+    213142, 
+    213143, 
+    213144, 
+    213145, 
+    213146, 
+    213147, 
+    213148, 
+    213149, 
+    213150, 
+    213151, 
+    213152, 
+    213153, 
+    213154, 
+    213155, 
+    213156, 
+    213157, 
+    213159, 
+    213160, 
+    213161, 
+    213162, 
+    213163, 
+    213164, 
+    213165, 
+    213166, 
+    213167, 
+    213168, 
+    213169, 
+    213170, 
+    213171, 
+    213172, 
+    213173, 
+    213174, 
+    213175, 
+    213176, 
+    213177, 
+    213178, 
+    213180, 
+    213182, 
+    213183, 
+    213184, 
+    213185, 
+    213186, 
+    213187, 
+    213188, 
+    213189, 
+    213190, 
+    213191, 
+    213192, 
+    213193, 
+    213194, 
+    213195, 
+    213196, 
+    213197, 
+    213198, 
+    213199, 
+    213200, 
+    213202, 
+    213203, 
+    213204, 
+    213205, 
+    213206, 
+    213207, 
+    213208, 
+    213209, 
+    213210, 
+    213211, 
+    213212, 
+    213213, 
+    213214, 
+    213215, 
+    213216, 
+    213217, 
+    213218, 
+    213221, 
+    213222, 
+    213223, 
+    213224, 
+    213225, 
+    213226, 
+    213227, 
+    213228, 
+    213229, 
+    213230, 
+    213231, 
+    213232, 
+    213233, 
+    213234, 
+    213235, 
+    213236, 
+    213237, 
+    213239, 
+    213240, 
+    213241, 
+    213242, 
+    213244, 
+    213246, 
+    213247, 
+    213248, 
+    213249, 
+    213250, 
+    213251, 
+    213252, 
+    213253, 
+    213254, 
+    213255, 
+    213256, 
+    213257, 
+    213259, 
+    213260, 
+    213261, 
+    213262, 
+    213263, 
+    213264, 
+    213265, 
+    213266, 
+    213267, 
+    213268, 
+    213269, 
+    213270, 
+    213271, 
+    213272, 
+    213273, 
+    213274, 
+    213276, 
+    213277, 
+    213278, 
+    213279, 
+    213280, 
+    213281, 
+    213282, 
+    213283, 
+    213284, 
+    213285, 
+    213286, 
+    213287, 
+    213288, 
+    213289, 
+    213290, 
+    213291, 
+    213292, 
+    213293, 
+    213294, 
+    213296,
+]
+
+# 226001 -> 227147
+
+roll = []
+name = []
+regis = []
+ 
+p1 = []
+p2 = []
+p3 = []
+p4 = []
+p5 = []
+p6 = []
+
+total = []
+result = []
+
+for i in range(0, 143):
+    driver.get('https://brabu.net/bca42023_result.php')
+    rol = driver.find_element("name" , "roll")
+    rol.send_keys(Roll[i])
+    getres = driver.find_element("xpath" , "/html/body/div[3]/div/div[1]/center/form/table/tbody/tr[2]/td/input[2]")
+    getres.click()
+    time.sleep(1)
+    roll.append(i)
+
+    nem = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[2]/td")
+    reg = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[3]/td")
+    clg = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[4]/td")
+
+    sb1 = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[5]/td")
+    sb2 = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[6]/td")
+    sb3 = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[7]/td")
+    sb4 = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[8]/td")
+    sb5 = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[9]/td")
+    sb6 = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[10]/td")
+
+    tot = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[11]/td")
+    res = driver.find_element("xpath", "/html/body/div[3]/div/div[1]/center/table/tbody/tr[12]/td")
+
+    roll.append(i)
+    name.append(nem.text)
+    regis.append(reg.text) 
+
+    p1.append(sb1.text)
+    p2.append(sb2.text)
+    p3.append(sb3.text)
+    p4.append(sb4.text)
+    p5.append(sb5.text)
+    p6.append(sb6.text)
+
+    total.append(tot.text)
+    result.append(res.text)
+
+
+dict1 = {
+    "Roll" : roll,
+    "Name" : name,
+    "Registration" : regis,
+
+    "101-Maths" : p1,
+    "102-Computer" : p2,
+    "103-Business" : p3,
+    "104-C" : p4,
+    "105-Lab1" : p5,
+    "106-Lab2" : p6,
+
+    "Total" : total,
+    "Result" : result
+}
+
+
+df = pd.DataFrame(dict1)
+df.to_csv("firstsem.csv")
+
+
+
